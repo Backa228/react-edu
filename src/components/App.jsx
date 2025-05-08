@@ -3,6 +3,7 @@ import Product from './Product.jsx'
 import Gallery from './Gallery.jsx'
 import MailBox from './MailBox.jsx'
 import Item from './Item.jsx'
+import List from './List.jsx'
 
 export default function App() {
   return (
@@ -69,7 +70,11 @@ export default function App() {
           name="Фото Тем О'Шонессі(Tam O'Shaughnessy)" 
         />
       </ul>
-    </section>
+      </section>
+      
+      <List
+      
+      />
     </>
   )
 }
