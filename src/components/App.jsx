@@ -4,6 +4,7 @@ import Gallery from './Gallery.jsx'
 import MailBox from './MailBox.jsx'
 import Item from './Item.jsx'
 import List from './List.jsx'
+import Alert from './Alert.jsx'
 
 export default function App() {
   return (
@@ -71,10 +72,19 @@ export default function App() {
         />
       </ul>
       </section>
-      
-      <List
-      
-      />
+      <List/>
+      <Alert
+        variant="warning"
+        text="Please update your email!" />
+      <Alert
+        variant="error"
+        text="There was an error during transaction!" />
+      <Alert
+        variant="sucsess"
+        text="Payment received, thank you for your purchase!" />
+      <Alert
+        variant="sucsess"
+        text="Payment received, thank you for your purchase!" />
     </>
   )
 }

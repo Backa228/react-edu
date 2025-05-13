@@ -6,13 +6,23 @@ export default function List() {
         person.profession === 'хімік'
     )
     const listItems = chemists.map(person =>
-        <li key={person.id}>
+        <li key={person.id} style={{
+            fontSize: 16,
+            color: "darkred",
+            display: "flex",
+            gap: 25,
+        }}>
             <img src={getImageUrl(person.imageId)} alt={person.name} />
-            <h2>(person.name)</h2>
+            <h2>{person.name}</h2>
             <p>{person.profession +', ' + 'число працею є ' + person.accomplishment}</p>
         </li>
 
     ) 
     console.log(listItems);
-    return <ul>(listItems)</ul>
+    return <ul style={{
+        listStyle: 'none',
+        padding: "30px 35px",
+        borderRadius: 15,
+        border: "solid darkred 2px"
+    }}>{listItems}</ul>
 }
