@@ -80,11 +80,18 @@ export default function App() {
         variant="error"
         text="There was an error during transaction!" />
       <Alert
-        variant="sucsess"
-        text="Payment received, thank you for your purchase!" />
+        variant="success"
+        text="Payment received, thank you for your purchase!"
+        elevated/>
       <Alert
-        variant="sucsess"
-        text="Payment received, thank you for your purchase!" />
+        variant="info"
+        text="Payment received, thank you for your purchase!"
+        outlined/>
+      <Alert
+        variant="info"
+        text="Payment received, thank you for your purchase!"
+        elevated
+        outlined/>
     </>
   )
 }

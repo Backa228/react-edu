@@ -1,0 +1,32 @@
+.alert{
+    margin: 8;
+    padding: 12px 16px;
+    border-radius: 4; 
+    background-color: gray;
+    color: getBgColor(variant);
+}
+
+.alert.info{
+    color:rgb(0, 255, 255);
+}
+
+.alert.success {
+    color: rgb(0, 255, 0);
+}
+
+.alert.error {
+    color: red;
+}
+
+.alert.warning {
+    color: orange;
+}
+
+.alert.isOutlined {
+    outline: 1px solid black;
+}
+
+.alert.isElevated {
+    box-shadow: rgb(0 0 0 / 20%) 0px 3px 3px -2px, rgb(0 0 0 / 14%) 0px 3px 4px 0px,
+        rgb(0 0 0 / 12%) 0px 1px 8px 0px;
+}
