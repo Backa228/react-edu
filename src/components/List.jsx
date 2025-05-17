@@ -1,5 +1,6 @@
 import { people } from './data.js'
 import { getImageUrl } from './utils.js'
+import "./List.css"
 
 export default function List() {
     const chemists = people.filter(person =>
@@ -13,7 +14,7 @@ export default function List() {
             gap: 25,
         }}>
             <img src={getImageUrl(person.imageId)} alt={person.name} />
-            <h2>{person.name}</h2>
+            <h2 className='text'>{person.name}</h2>
             <p>{person.profession +', ' + 'число працею є ' + person.accomplishment}</p>
         </li>
 

@@ -5,6 +5,7 @@ import MailBox from './MailBox.jsx'
 import Item from './Item.jsx'
 import List from './List.jsx'
 import Alert from './Alert.jsx'
+import { BiAccessibility } from "react-icons/bi";
 
 export default function App() {
   return (
@@ -92,6 +93,7 @@ export default function App() {
         text="Payment received, thank you for your purchase!"
         elevated
         outlined/>
+      <BiAccessibility className='icon-car' size={64} />
     </>
   )
 }
