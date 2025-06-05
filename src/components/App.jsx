@@ -5,11 +5,19 @@ import MailBox from './MailBox.jsx'
 import Item from './Item.jsx'
 import List from './List.jsx'
 import Alert from './Alert.jsx'
-import { BiAccessibility } from "react-icons/bi";
+import { BiAccessibility } from "react-icons/bi"
+import Card from './Card.jsx'
+// import CustomButton from './Button.jsx'
+import Button from './Button.jsx'
+import Fruits from './Fruits.jsx'
 
 export default function App() {
   return (
     <>
+      <Fruits />
+      <Button />
+      {/* <CustomButton message="lalalalalallalalalala">Play music</CustomButton>
+      <CustomButton message="Uploading your data...">Upload data</CustomButton> */}
       <h1>Products</h1>
       <Product
         name="Cookie"
@@ -94,6 +102,14 @@ export default function App() {
         elevated
         outlined/>
       <BiAccessibility className='icon-car' size={64} />
+
+      <Card>
+        <h1>Title</h1>
+        <ul>
+          <li>First</li>
+          <li>Second</li>
+        </ul>
+      </Card>
     </>
   )
 }
