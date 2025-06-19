@@ -10,12 +10,38 @@ import Card from './Card.jsx'
 // import CustomButton from './Button.jsx'
 import Button from './Button.jsx'
 import Fruits from './Fruits.jsx'
+import { useState } from "react"
+import ButtonEffect from './ButtonEffect.jsx'
+import Timer from './Timer.jsx'
+import LoginForm from './LoginForm.jsx'
+import SearchBar from './SearchBar.jsx'
 
 export default function App() {
+    const [click, setClicks] = useState(0)
+    const handleClick = () => {
+      setClicks(click + 1)
+    }
+  const [showTimer, setShowTimer] = useState(true)
+
+  const handleLogin = (userData) => {
+    console.log(userData)
+  }
   return (
     <>
+      <SearchBar />
+      <div>
+        <h1>Login to your account</h1>
+        <LoginForm onLogin={handleLogin}/>
+      </div>
+      <Timer />
+      <button onClick={() => setShowTimer((prev) => !prev)}>
+        {showTimer ? "Приховати таймер" : "Показати таймер"}
+      </button>
+      {showTimer && <Timer />}
+      <ButtonEffect/>
       <Fruits />
-      <Button />
+      <Button value={click} onUpdate={handleClick} />
+      <Button value={click} onUpdate={handleClick} />
       {/* <CustomButton message="lalalalalallalalalala">Play music</CustomButton>
       <CustomButton message="Uploading your data...">Upload data</CustomButton> */}
       <h1>Products</h1>

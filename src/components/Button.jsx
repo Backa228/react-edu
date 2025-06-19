@@ -22,15 +22,9 @@
 // }
 // export default CustomButton
 
-import { useState } from "react"
-const Button = () => {
-    // let clicks = 0
-    const [ clicks, setClicks ] = useState(0)
-    const handleClick = () => {
-        setClicks(clicks + 1)
-    }
+const Button = ({ value, onUpdate }) => {
     
-    return <button onClick={handleClick}>Current: {clicks}</button>
+    return <button onClick={onUpdate}>Current: {value}</button>
 }
 
 export default Button
