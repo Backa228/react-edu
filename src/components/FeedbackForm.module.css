@@ -1,6 +1,29 @@
-.form{
+.form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     max-width: 250px;
     background-color: rgb(233, 210, 143);
+    border-radius: 7px;
+    margin: 15px;
+}
+
+.btn {
+    padding: 10px;
+    margin: 15px;
+    transition: all ease 0.3s;
+}
+
+.btn:hover {
+    border-radius: 15px;
+    width: 100px;
+    height: 50px;
+    background-color: rgb(53, 53, 53);
+}
+
+.field1 {
+    margin: 5px 10px 0 10px;
+}
+.field2 {
+    margin: 2px;
 }
