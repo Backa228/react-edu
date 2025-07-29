@@ -10,15 +10,43 @@ import Card from './Card.jsx'
 // import CustomButton from './Button.jsx'
 import Button from './Button.jsx'
 import Fruits from './Fruits.jsx'
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import ButtonEffect from './ButtonEffect.jsx'
 import Timer from './Timer.jsx'
 import LoginForm from './LoginForm.jsx'
 import SearchBar from './SearchBar.jsx'
 import LangSwitcher from './LangSwitcher.jsx'
 import FeedbackForm from './FeedbackForm.jsx'
+import axios from 'axios'
 
 export default function App() {
+
+const [articles, setArticles] = useState([])
+
+  useEffect(() => {
+    async function fetchArticles() {
+      const response = await axios.get(
+        "https://hn.algolia.com/api/v1/search?query=react"
+      );
+      console.log(response)
+      setArticles(response.data.hits)
+    }
+    fetchArticles()
+  }, [])
+
+  const [catUrl, setCatUrl] = useState([])
+
+  useEffect(() => {
+    async function fetchCats() {
+      const response = await axios.get(
+        "https://api.thecatapi.com/v1/images/search"
+      );
+      console.log(response)
+      setCatUrl(response.data[0].url)
+    }
+    fetchCats()
+  }, [])
+
     const [click, setClicks] = useState(0)
     const handleClick = () => {
       setClicks(click + 1)
@@ -45,6 +73,20 @@ export default function App() {
 
   return (
     <>
+      <div>
+        <h1>Cat</h1>
+        {catUrl ? <img src={catUrl} alt="random cat" style={{ width: "500px" }} /> : <p>loading...</p>}
+        {articles.length > 0 && (
+          <ul>
+            {articles.map(({ objectID, url, title }) => (
+              <li key={objectID}>
+                <a href={url} target='_blank'>{title}</a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
       <FeedbackForm/>
       <div>
       <label>
