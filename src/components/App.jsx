@@ -10,7 +10,7 @@ import Card from './Card.jsx'
 // import CustomButton from './Button.jsx'
 import Button from './Button.jsx'
 import Fruits from './Fruits.jsx'
-import { useState, useEffect } from "react"
+import { useState, useEffect, use } from "react"
 import ButtonEffect from './ButtonEffect.jsx'
 import Timer from './Timer.jsx'
 import LoginForm from './LoginForm.jsx'
@@ -18,31 +18,51 @@ import SearchBar from './SearchBar.jsx'
 import LangSwitcher from './LangSwitcher.jsx'
 import FeedbackForm from './FeedbackForm.jsx'
 import axios from 'axios'
+import {RotateLoader} from 'react-spinners'
+
+
 
 export default function App() {
 
-const [articles, setArticles] = useState([])
+  const [articles, setArticles] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     async function fetchArticles() {
-      const response = await axios.get(
-        "https://hn.algolia.com/api/v1/search?query=react"
-      );
-      console.log(response)
-      setArticles(response.data.hits)
+      try {
+        setLoading(true)
+        const response = await axios.get(
+          "https://hn.algolia.com/api/v1/search?query=react"
+        );
+        console.log(response)
+        setArticles(response.data.hits)
+      } catch (error) {
+    
+      } finally {
+        setLoading(false)
+      }
     }
-    fetchArticles()
-  }, [])
+      fetchArticles()
+    }, [])
 
   const [catUrl, setCatUrl] = useState([])
+  const [loadingCat, setLoadingCat] = useState(false)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     async function fetchCats() {
-      const response = await axios.get(
+      try {
+        setLoadingCat(true)
+        const response = await axios.get(
         "https://api.thecatapi.com/v1/images/search"
       );
       console.log(response)
       setCatUrl(response.data[0].url)
+    } catch (error) {
+      setError(true)
+    } finally {
+      setLoadingCat(false)
+      }
     }
     fetchCats()
   }, [])
@@ -73,10 +93,14 @@ const [articles, setArticles] = useState([])
 
   return (
     <>
-      <div>
-        <h1>Cat</h1>
-        {catUrl ? <img src={catUrl} alt="random cat" style={{ width: "500px" }} /> : <p>loading...</p>}
-        {articles.length > 0 && (
+      <h1>Cat</h1>
+      {loadingCat && <RotateLoader />}
+      {error && <p>Sorry, Error!:)</p>}
+        {catUrl && <img src={catUrl} style={{ width: "500px" }} />}
+        <div>
+          <h1>Latest articles</h1>
+          {loading && <RotateLoader />}
+          {articles.length > 0 && (
           <ul>
             {articles.map(({ objectID, url, title }) => (
               <li key={objectID}>
@@ -85,7 +109,7 @@ const [articles, setArticles] = useState([])
             ))}
           </ul>
         )}
-      </div>
+        </div>
 
       <FeedbackForm/>
       <div>
