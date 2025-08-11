@@ -10,7 +10,7 @@ import Card from './Card.jsx'
 // import CustomButton from './Button.jsx'
 import Button from './Button.jsx'
 import Fruits from './Fruits.jsx'
-import { useState, useEffect, use } from "react"
+import { useState, useEffect } from "react"
 import ButtonEffect from './ButtonEffect.jsx'
 import Timer from './Timer.jsx'
 import LoginForm from './LoginForm.jsx'
@@ -18,36 +18,42 @@ import SearchBar from './SearchBar.jsx'
 import LangSwitcher from './LangSwitcher.jsx'
 import FeedbackForm from './FeedbackForm.jsx'
 import axios from 'axios'
-import {RotateLoader} from 'react-spinners'
-
-
+import { RotateLoader } from 'react-spinners'
+import { fetchArticlesWithTopic } from '../articles-api.js'
+import { SearchForm } from './SearchForm.jsx'
 
 export default function App() {
 
   const [articles, setArticles] = useState([])
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
 
-  useEffect(() => {
-    async function fetchArticles() {
+    async function fetchArticles(topic) {
       try {
+        setArticles([])
+        setError(false)
         setLoading(true)
-        const response = await axios.get(
-          "https://hn.algolia.com/api/v1/search?query=react"
-        );
-        console.log(response)
-        setArticles(response.data.hits)
-      } catch (error) {
-    
+        const data = await fetchArticlesWithTopic(topic)
+        setArticles(data)
+      } catch {
+        setError(true)
       } finally {
         setLoading(false)
       }
     }
-      fetchArticles()
-    }, [])
+  
+  // const [catUrl, setCatUrl] = useState([])
+  // const [loadingCat, setLoadingCat] = useState(false)
+  //     } finally {
+  //       setLoading(false)
+  //     }
+  //   }
+  //     fetchArticles()
+  //   }, [])
 
   const [catUrl, setCatUrl] = useState([])
   const [loadingCat, setLoadingCat] = useState(false)
-  const [error, setError] = useState(false)
+  const [errorCat, setErrorCat] = useState(false)
 
   useEffect(() => {
     async function fetchCats() {
@@ -58,8 +64,8 @@ export default function App() {
       );
       console.log(response)
       setCatUrl(response.data[0].url)
-    } catch (error) {
-      setError(true)
+    } catch {
+      setErrorCat(true)
     } finally {
       setLoadingCat(false)
       }
@@ -94,12 +100,15 @@ export default function App() {
   return (
     <>
       <h1>Cat</h1>
+      
       {loadingCat && <RotateLoader />}
-      {error && <p>Sorry, Error!:)</p>}
+      {errorCat && <p>Sorry, Error!:)</p>}
         {catUrl && <img src={catUrl} style={{ width: "500px" }} />}
         <div>
-          <h1>Latest articles</h1>
-          {loading && <RotateLoader />}
+        <h1>Search article</h1>
+        <SearchForm onSearch={fetchArticles}/>
+        {loading && <RotateLoader />}
+        {error && <p>Sorry, Error!</p>}
           {articles.length > 0 && (
           <ul>
             {articles.map(({ objectID, url, title }) => (
