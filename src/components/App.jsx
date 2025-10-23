@@ -22,6 +22,8 @@ import { RotateLoader } from 'react-spinners'
 import { fetchArticlesWithTopic } from '../articles-api.js'
 import { SearchForm } from './SearchForm.jsx'
 
+import UseHooks from './useHooks/useMemo'
+
 export default function App() {
 
   const [articles, setArticles] = useState([])
@@ -99,6 +101,9 @@ export default function App() {
 
   return (
     <>
+      <UseHooks />
+      <hr />
+
       <h1>Cat</h1>
       
       {loadingCat && <RotateLoader />}
