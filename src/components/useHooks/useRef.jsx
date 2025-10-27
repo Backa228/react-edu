@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 
-const UseRemo = () => {
+const UseRef = () => {
     const [count, setCount] = useState(0)
     const countRef = useRef(0)
 
@@ -13,7 +13,9 @@ const UseRemo = () => {
     }
     return (
         <>
-            
+            <button onClick={handleClick}> Натисни мене </button>
+            <p> State count: {count} </p>
+            <p> Ref count: {countRef.current} </p>
         </>
     )
 }
