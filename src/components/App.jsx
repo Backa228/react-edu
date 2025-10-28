@@ -22,7 +22,8 @@ import { RotateLoader } from 'react-spinners'
 import { fetchArticlesWithTopic } from '../articles-api.js'
 import { SearchForm } from './SearchForm.jsx'
 
-import UseHooks from './useHooks/useMemo'
+import UseMemo from './useHooks/UseMemo.jsx'
+import UseRef from './useHooks/UseRef.jsx'
 
 export default function App() {
 
@@ -101,9 +102,9 @@ export default function App() {
 
   return (
     <>
-      <UseHooks />
+      <UseRef sourse='http://media.w3.org/2010/05/sintel/trailer.mp4'/>
       <hr />
-
+      <UseMemo />
       <h1>Cat</h1>
       
       {loadingCat && <RotateLoader />}
