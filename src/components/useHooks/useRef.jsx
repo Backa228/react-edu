@@ -1,4 +1,5 @@
 import { useRef, useState } from "react"
+import ReactPlayer from 'react-player'
 
 const UseRef = ({ source }) => {
     // const [value, setValue] = useState(0);
@@ -30,16 +31,16 @@ const UseRef = ({ source }) => {
     //       </button>
     //     </>
     //   );
-    const playerRef = useRef()
-    const play = () => playerRef.current.play()
-    const pause = () => playerRef.current.pause()
+    const playerRef = useRef(null)
+    const play = () => playerRef.current?.getInternalPlayer()?.playVideo()
+    const pause = () => playerRef.current?.getInternalPlayer()?.pauseVideo()
 
     return (
         <>
             <video
                 ref={playerRef}
                 width='400'
-                src={source}>    
+                url={source}>    
             </video>
 
             <button onClick={play}>PAY</button>

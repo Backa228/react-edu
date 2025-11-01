@@ -24,6 +24,8 @@ import { SearchForm } from './SearchForm.jsx'
 
 import UseMemo from './useHooks/UseMemo.jsx'
 import UseRef from './useHooks/UseRef.jsx'
+import ComponentA from './useHooks/ComponentA.jsx'
+import ComponentB from './useHooks/ComponentB.jsx'
 
 export default function App() {
 
@@ -102,6 +104,10 @@ export default function App() {
 
   return (
     <>
+      <ComponentA />
+      <hr />
+      <ComponentB />
+      <hr />
       <UseRef sourse='http://media.w3.org/2010/05/sintel/trailer.mp4'/>
       <hr />
       <UseMemo />
