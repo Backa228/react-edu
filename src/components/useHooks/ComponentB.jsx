@@ -7,7 +7,7 @@ const ComponentB = () => {
   return (
     <>
         <button onClick={open}>Open sidebar</button>
-        <Sidebar isOpen={isOpen} onClose={close} />
+        <SideBar isOpen={isOpen} onClose={close} />
     </>
   );
 };

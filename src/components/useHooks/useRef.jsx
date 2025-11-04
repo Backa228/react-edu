@@ -31,17 +31,28 @@ const UseRef = ({ source }) => {
     //       </button>
     //     </>
     //   );
-    const playerRef = useRef(null)
-    const play = () => playerRef.current?.getInternalPlayer()?.playVideo()
-    const pause = () => playerRef.current?.getInternalPlayer()?.pauseVideo()
+    const [playing, setPlaying] = useState(false)
+    const play = () =>
+    {
+        setPlaying(true)
+        console.log('play')
+    }
+        // playerRef.current?.getInternalPlayer()?.playVideo()
+    const pause = () =>
+    {
+        setPlaying(false)
+        console.log('pause')
+    }
+        // playerRef.current?.getInternalPlayer()?.pauseVideo()
 
     return (
         <>
-            <video
-                ref={playerRef}
+            <ReactPlayer
+                playing={playing}
+                // ref={playerRef}
                 width='400'
                 url={source}>    
-            </video>
+            </ReactPlayer>
 
             <button onClick={play}>PAY</button>
             <button onClick={pause}>PAUSE</button>
