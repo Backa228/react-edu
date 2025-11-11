@@ -1,16 +1,19 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
 import App from './components/App.jsx'
-import './i18n'
-import { createContext } from 'react'
+import './index.css'
+import { AppProviders } from './context/AppProviders.jsx'
 
-import MyContext = createContext()
+// const initialUserValue = {
+//   username: "Andriy",
+//   inLoggedIn: true
+// }
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <MyContext>
-       <App />
-    </MyContext>
-  </StrictMode>,
+  // <StrictMode>
+  <AppProviders>
+    <App />
+  </AppProviders>
+
+  // </StrictMode>,
 )
