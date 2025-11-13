@@ -21,15 +21,20 @@ import axios from 'axios'
 import { RotateLoader } from 'react-spinners'
 import { fetchArticlesWithTopic } from '../articles-api.js'
 import { SearchForm } from './SearchForm.jsx'
-
+///
 import UseMemo from './useHooks/UseMemo.jsx'
 import UseRef from './useHooks/UseRef.jsx'
 import ComponentA from './useHooks/ComponentA.jsx'
 import ComponentB from './useHooks/ComponentB.jsx'
-
+///
 import { UserMenu } from './UserMenu.jsx'
-import { ThemeContext } from '../context/themeContext.jsx'
 import { ThemeSwitcher } from './ThemeSwitcher.jsx'
+///Маршрутизація
+import { Routes, Route, NavLink } from "react-router-dom";
+import clsx from 'clsx'
+import About from './pages/About.jsx'
+import Contacts from './pages/Contacts.jsx'
+import Home from './pages/Home.jsx'
 
 export default function App() {
 
@@ -106,8 +111,37 @@ export default function App() {
     setHasAccepted(evt.target.checked)
   }
 
+  const buildLinkClass = ({ isActive }) => {
+    return clsx('link', isActive && 'active')
+  }
+
   return (
     <>
+      <h1>Маршрутизація</h1>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <NavLink to="/" className={buildLinkClass}>Головна</NavLink>
+            </li>
+            <li>
+              <NavLink to="/about" className={buildLinkClass}>Про нас</NavLink>
+            </li>
+            <li>
+              <NavLink to="/contact" className={buildLinkClass}>Контакти</NavLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <Routes>
+          <Route path='/' element={<Home></Home>} />
+          <Route path='/about' element={<About></About>} />
+          <Route path='/contact' element={<Contacts></Contacts>} />
+          <Route path='*' element={ <h2>Сторінку не знайдено</h2>} />
+        </Routes>
+      </div>
+      <hr />
       <ThemeSwitcher />
       <hr />
       <UserMenu />
