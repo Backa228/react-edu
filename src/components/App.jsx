@@ -26,6 +26,7 @@ import UseMemo from './useHooks/UseMemo.jsx'
 import UseRef from './useHooks/UseRef.jsx'
 import ComponentA from './useHooks/ComponentA.jsx'
 import ComponentB from './useHooks/ComponentB.jsx'
+import VideoPlayer from './ReactPlayer'
 ///
 import { UserMenu } from './UserMenu.jsx'
 import { ThemeSwitcher } from './ThemeSwitcher.jsx'
@@ -35,6 +36,7 @@ import clsx from 'clsx'
 import About from './pages/About.jsx'
 import Contacts from './pages/Contacts.jsx'
 import Home from './pages/Home.jsx'
+import MainLayout from './layouts/MainLayout.jsx'
 
 export default function App() {
 
@@ -118,41 +120,44 @@ export default function App() {
   return (
     <>
       <h1>Маршрутизація</h1>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <NavLink to="/" className={buildLinkClass}>Головна</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about" className={buildLinkClass}>Про нас</NavLink>
-            </li>
-            <li>
-              <NavLink to="/contact" className={buildLinkClass}>Контакти</NavLink>
-            </li>
-          </ul>
-        </nav>
-      </div>
+
       <div>
         <Routes>
-          <Route path='/' element={<Home></Home>} />
-          <Route path='/about' element={<About></About>} />
-          <Route path='/contact' element={<Contacts></Contacts>} />
-          <Route path='*' element={ <h2>Сторінку не знайдено</h2>} />
+          <Route path='/' element={<MainLayout/>} >
+          <Route index element={<Home />} />
+          <Route path='/about' element={<About />} >
+              <Route path='mission' element={<h2>Наша місія</h2>} />
+              <Route path='team' element={<h2>Наша команда</h2>} />
+              <Route path='review' element={<h2>Наші відгуки</h2>} />
+          </Route>
+          <Route path='/contacts' element={<Contacts />} />
+        </Route>
+        
+        <Route path='*' element={ <h2>Сторінку не знайдено</h2>} />
         </Routes>
       </div>
+
+      <VideoPlayer src="https://media.w3.org/2010/05/sintel/trailer.mp4" />
+      <VideoPlayer src="https://www.youtube.com/watch?v=YTitWDtipJE&t=334s" />
+
       <hr />
       <ThemeSwitcher />
+
       <hr />
       <UserMenu />
+
       <hr />
       <ComponentA />
+
       <hr />
       <ComponentB />
+
       <hr />
-      <UseRef sourse='http://media.w3.org/2010/05/sintel/trailer.mp4'/>
+      <UseRef sourse='http://media.w3.org/2010/05/sintel/trailer.mp4' />
+      
       <hr />
       <UseMemo />
+
       <h1>Cat</h1>
       
       {loadingCat && <RotateLoader />}

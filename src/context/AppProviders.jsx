@@ -3,10 +3,10 @@ import { ThemeProvider } from './themeContext.jsx'
 
 export const AppProviders = ({ children }) => {
     return (
-        <UseProvider>
+        <UserProvider>
             <ThemeProvider>
                 {children}
             </ThemeProvider>
-        </UseProvider>
+        </UserProvider>
     )
 }
