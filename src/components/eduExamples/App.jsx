@@ -19,24 +19,26 @@ import LangSwitcher from './LangSwitcher.jsx'
 import FeedbackForm from './FeedbackForm.jsx'
 import axios from 'axios'
 import { RotateLoader } from 'react-spinners'
-import { fetchArticlesWithTopic } from '../articles-api.js'
+import { fetchArticlesWithTopic } from '../../articles-api.js'
 import { SearchForm } from './SearchForm.jsx'
 ///
-import UseMemo from './useHooks/UseMemo.jsx'
-import UseRef from './useHooks/UseRef.jsx'
-import ComponentA from './useHooks/ComponentA.jsx'
-import ComponentB from './useHooks/ComponentB.jsx'
-import VideoPlayer from './ReactPlayer'
+import UseMemo from '../useHooks/UseMemo.jsx'
+import UseRef from '../useHooks/UseRef.jsx'
+import ComponentA from '../useHooks/ComponentA.jsx'
+import ComponentB from '../useHooks/ComponentB.jsx'
+import VideoPlayer from './ReactPlayer.jsx'
 ///
 import { UserMenu } from './UserMenu.jsx'
 import { ThemeSwitcher } from './ThemeSwitcher.jsx'
 ///Маршрутизація
 import { Routes, Route, NavLink } from "react-router-dom";
 import clsx from 'clsx'
-import About from './pages/About.jsx'
-import Contacts from './pages/Contacts.jsx'
-import Home from './pages/Home.jsx'
-import MainLayout from './layouts/MainLayout.jsx'
+import About from '../pages/About.jsx'
+import Contacts from '../pages/Contacts.jsx'
+import Home from '../pages/Home.jsx'
+import MainLayout from '../layouts/MainLayout.jsx'
+import Products from '../pages/Product.jsx'
+import ProductsDetails from '../pages/ProductDetails.jsx'
 
 export default function App() {
 
@@ -131,6 +133,9 @@ export default function App() {
               <Route path='review' element={<h2>Наші відгуки</h2>} />
           </Route>
           <Route path='/contacts' element={<Contacts />} />
+          <Route path='/products' element={<Products />} />
+          <Route path='/products/:productId' element={<ProductsDetails />} />
+            
         </Route>
         
         <Route path='*' element={ <h2>Сторінку не знайдено</h2>} />

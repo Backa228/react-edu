@@ -1,6 +1,6 @@
-import { useUser } from '../context/userContext.jsx'
+import { useUser } from '../../context/userContext.jsx'
 import { useState } from 'react'
-import { useTheme } from '../context/themeContext.jsx'
+import { useTheme } from '../../context/themeContext.jsx'
 import  clsx from 'clsx'
 
 export const UserMenu = () => {

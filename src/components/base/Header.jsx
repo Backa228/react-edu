@@ -23,6 +23,9 @@ const Header = () => {
           <li>
             <NavLink to="/contacts" className={buildLinkClass}>Контакти</NavLink>
           </li>
+          <li>
+            <NavLink to="/products" className={buildLinkClass}>Продукти компанії</NavLink>
+          </li>
         </ul>
       </nav>
     </header>
