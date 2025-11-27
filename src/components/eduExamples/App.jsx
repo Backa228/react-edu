@@ -39,6 +39,8 @@ import Home from '../pages/Home.jsx'
 import MainLayout from '../layouts/MainLayout.jsx'
 import Products from '../pages/Product.jsx'
 import ProductsDetails from '../pages/ProductDetails.jsx'
+import { NotFound } from '../pages/NotFound.jsx'
+import DashBoard from '../pages/DashBoard.jsx'
 
 export default function App() {
 
@@ -135,10 +137,12 @@ export default function App() {
           <Route path='/contacts' element={<Contacts />} />
           <Route path='/products' element={<Products />} />
           <Route path='/products/:productId' element={<ProductsDetails />} />
+          <Route path='/login' element={<UserMenu />} />
+          <Route path='/dashboard' element={<DashBoard />} />  
             
         </Route>
         
-        <Route path='*' element={ <h2>Сторінку не знайдено</h2>} />
+        <Route path='*' element={<NotFound/>} />
         </Routes>
       </div>
 

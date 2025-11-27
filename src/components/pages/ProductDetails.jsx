@@ -2,7 +2,7 @@
 
 import { useParams } from "react-router-dom";
 
-export const ProductDetails = () => {
+const ProductDetails = () => {
   const { productId } = useParams();
 
   return (
@@ -16,3 +16,5 @@ export const ProductDetails = () => {
     </div>
   );
 };
+
+export default ProductDetails
