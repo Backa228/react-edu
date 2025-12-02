@@ -1,9 +1,13 @@
 // src/pages/ProductDetails.jsx
 
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 
 const ProductDetails = () => {
   const { productId } = useParams();
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/product'
+  console.log(location.state)
+  console.log(location)
 
   return (
     <div>
@@ -13,6 +17,9 @@ const ProductDetails = () => {
       {productId === '3' && <p>Details about Google Pixel 8...</p>}
       {productId === '4' && <p>Details about OnePlus 12...</p>}
       <p>Here will be product details...</p>
+      <button>
+        <Link to={backLinkHref}>Back to products</Link>
+      </button>
     </div>
   );
 };
